@@ -1,58 +1,61 @@
 # Rethinking SKILL Writing
 
-这个仓库包含一篇关于 Agent SKILL 写作范式的文章，以及一个配套示例：`slim-bad-skill`。
+[README|中文](README.zh-CN.md)
 
-核心观点：
+This repository contains an article on the Agent SKILL writing paradigm, plus a companion example: `slim-bad-skill`.
 
-> SKILL 不应该把一次跑通过的 workflow 固化成未来 Agent 必须遵守的路线。
-> SKILL 更应该保存任务契约：目标、边界、验收标准、接口事实和必要风险约束。
+Core thesis:
 
-## 内容
+> A SKILL should not freeze a one-time successful workflow into a route every future Agent must follow.
+> A SKILL should preserve the task contract: goal, boundaries, acceptance criteria, interface facts, and necessary risk constraints.
+
+## Contents
 
 ```text
 .
-├── rethinking-how-we-write-skill.md
+├── rethinking-skill-writing.en.md
+├── rethinking-skill-writing.zh.md
 ├── skills/slim-bad-skill/
 └── README.md
 ```
 
-* `rethinking-how-we-write-skill.md`：文章《重新思考 SKILL 写作：为什么很多旧时代的 SKILL 其实很“烂”》
-* `skills/slim-bad-skill/`：附带的 SKILL
+* `rethinking-skill-writing.en.md` / `rethinking-skill-writing.zh.md`: Article — "Rethinking SKILL Writing: Why Many Old-Style SKILLs Are Actually Bad"
+* `skills/slim-bad-skill/`: The accompanying SKILL
 
-## 简述
+## Overview
 
-很多早期 SKILL 会把任务执行过程写成固定步骤：
+Many early SKILLs describe task execution as fixed steps:
 
 ```text
-先做 A
-再做 B
-然后做 C
-最后检查 D
+Do A first
+Then do B
+Then do C
+Finally check D
 ```
 
-这类 workflow 在模型能力较弱、长程执行不稳定时有价值。它提供脚手架，降低模型迷路的概率。
+This kind of workflow had value when models were weaker and long-horizon execution was unstable. It provided scaffolding, reducing the chance the model would get lost.
 
-但当前更强的 Agent 已经能在很多任务中自行规划、选择工具、验证结果和修正路线。此时，如果 SKILL 继续写死大量非必要步骤，可能会限制 Agent 的策略空间，让它为了完成流程而不是完成任务。
+But today's more capable Agents can plan, choose tools, verify results, and correct their own course in many tasks. When a SKILL still hardcodes large amounts of non-essential steps, it may restrict the Agent's strategy space, causing it to serve the process rather than the task.
 
-问题不在于 workflow 本身，而在于：
+The problem is not workflow itself. The problem is:
 
-> 这条 workflow 的约束力来自哪里？
+> Where does the binding force of this workflow come from?
 
-如果约束来自真实接口、因果顺序、安全风险、外部消费者或验收标准，它应该保留。
-如果约束只来自“作者曾经这样跑通过一次”，它不应该成为规则。
+If the constraint comes from real interfaces, causal order, security risks, external consumers, or acceptance criteria, it should stay.
+If the constraint comes only from "the author once succeeded this way," it has no right to become a rule.
 
-## `slim-bad-skill` 是什么
+## What Is `slim-bad-skill`
 
-`slim-bad-skill` 是一个最小化示例，用来展示如何把一个臃肿、流程化、表演式的 SKILL 压缩成更接近“契约”的版本。
+`slim-bad-skill` is a minimal example showing how to compress a bloated, procedural, performative SKILL into a version closer to a "contract."
 
-## 适用场景
+## Applicability
 
-这个思路更适合：
+This mindset fits:
 
-* Agent SKILL 设计
-* Prompt / system instruction 精简
-* 长程任务 agent 的任务契约设计
-* 从 workflow 型提示迁移到 contract 型提示
-* 删除“看起来严谨但没有真实约束力”的规则
+* Agent SKILL design
+* Prompt / system-instruction trimming
+* Task-contract design for long-horizon agents
+* Migrating from workflow-style prompts to contract-style prompts
+* Removing rules that "look rigorous but carry no real binding force"
 
-不适合直接套用到所有场景。对于合规、医疗、法律、财务、数据迁移、不可逆操作等高风险任务，流程约束仍然可能是必要条件。
+It is **not** a universal template. For compliance, medical, legal, financial, data-migration, irreversible, or other high-risk tasks, process constraints may still be necessary.
